@@ -31,6 +31,7 @@ spec:
         volumeMounts:
         - mountPath: /app/config/
           name: app-config
+          namespace: dev
           readOnly: true
       restartPolicy: Always
       volumes:
