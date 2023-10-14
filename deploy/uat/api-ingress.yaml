@@ -9,7 +9,7 @@ spec:
       http:
         paths:
           - pathType: Prefix
-            path: /uat/VoteService
+            path: /VoteService
             backend:
               service:
                 name: vote-api-dev-svc
