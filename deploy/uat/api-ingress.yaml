@@ -5,7 +5,7 @@ metadata:
   namespace: uat
 spec:
   rules:
-    - host: localhost   #這邊改成你的Cluster2叢集的{IP}.sslip.io
+    - host: localhost   
       http:
         paths:
           - pathType: Prefix
