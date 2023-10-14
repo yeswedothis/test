@@ -5,11 +5,11 @@ metadata:
   namespace: uat
 spec:
   rules:
-    - host: 20.198.108.29.sslip.io   #這邊改成你的Cluster2叢集的{IP}.sslip.io
+    - host: localhost   #這邊改成你的Cluster2叢集的{IP}.sslip.io
       http:
         paths:
           - pathType: Prefix
-            path: /VoteService
+            path: /uat/VoteService
             backend:
               service:
                 name: vote-api-dev-svc
