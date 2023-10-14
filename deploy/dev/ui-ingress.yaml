@@ -3,8 +3,6 @@ kind: Ingress
 metadata:
   name: ui-ingress
   namespace: dev
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
     - host: localhost   #這邊改成你的Cluster1叢集的{IP}.sslip.io
