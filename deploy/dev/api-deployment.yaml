@@ -31,7 +31,6 @@ spec:
         volumeMounts:
         - mountPath: /app/config/
           name: app-config
-          namespace: dev
           readOnly: true
       restartPolicy: Always
       volumes:
@@ -39,3 +38,4 @@ spec:
         configMap:
           defaultMode: 420
           name: vote-api-dev-configmap
+          namespace: dev
