@@ -38,4 +38,3 @@ spec:
         configMap:
           defaultMode: 420
           name: vote-api-dev-configmap
-          namespace: dev
