@@ -11,7 +11,7 @@ spec:
       http:
         paths:
           - pathType: Prefix
-            path: /dev
+            path: /
             backend:
               service:
                 name: vote-ui-dev-svc
