@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ui-ingress
-  namespace: default
+  namespace: dev
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
@@ -11,7 +11,7 @@ spec:
       http:
         paths:
           - pathType: Prefix
-            path: /
+            path: /dev
             backend:
               service:
                 name: vote-ui-dev-svc

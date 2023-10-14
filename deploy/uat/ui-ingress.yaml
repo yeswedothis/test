@@ -4,14 +4,14 @@ metadata:
   name: ui-ingress
   namespace: uat
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /uat
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
     - host: localhost   #這邊改成你的Cluster2叢集的{IP}.sslip.io
       http:
         paths:
           - pathType: Prefix
-            path: /uat
+            path: /
             backend:
               service:
                 name: vote-ui-dev-svc
