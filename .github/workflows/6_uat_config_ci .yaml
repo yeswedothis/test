@@ -8,7 +8,7 @@ on:
       - 'backend/src/main/resources/*'
 
 env:
-  ACCESS_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+  ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   update-configmap:
