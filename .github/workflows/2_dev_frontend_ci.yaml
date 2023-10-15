@@ -49,6 +49,7 @@ jobs:
         context: frontend/
         dockerfile: Dockerfile
         push: true
+        platforms: linux/amd64,linux/arm64
         tags: ${{ env.IMAGE_NAME }}:0.1.0
 
     - name: Update Kubernetes deployment
