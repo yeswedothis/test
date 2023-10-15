@@ -60,12 +60,12 @@ jobs:
         dockerfile: Dockerfile
         push: true
         platforms: linux/amd64,linux/arm64
-        tags: ${{ env.IMAGE_NAME }}:0.1.0}
+        tags: ${{ env.IMAGE_NAME }}:0.1.0
 
     - name: Update Kubernetes deployment
       run: |
          git pull
-         sed -i 's@image: .*@image: '"${{ env.IMAGE_NAME }}:0.1.0}"'@' ./deploy/dev/api-deployment.yaml
+         sed -i 's@image: .*@image: '"${{ env.IMAGE_NAME }}:0.1.0"'@' ./deploy/dev/api-deployment.yaml
 
 
     - name: Commit changes
@@ -73,5 +73,5 @@ jobs:
         git config --local user.email "PipelineBot"
         git config --local user.name "PipelineBot"
         git add ./deploy/dev/api-deployment.yaml
-        git commit -m "Update backend image version to 0.1.0}" -a
+        git commit -m "Update backend image version to 0.1.0" -a
         git push
