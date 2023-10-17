@@ -146,7 +146,7 @@ export async function resultApi() {
         //         "optionId": "04",
         //         "count": 0
         //     }
-        // ]
+        // ] 
         ,
         "time": "2023-06-05T15:14:23.660586"
     };
