@@ -49,6 +49,9 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
 
+    - name: test
+      run: ls
+
     - name: Build with Maven and generate reports
       run: mvn -B package --file backend/pom.xml
 
