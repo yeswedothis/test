@@ -1,5 +1,6 @@
 package com.webcomm.tw.svc.vote.rest;
 
+
 public enum RestStatus {
 
     SUCCESS("200", "OK");
