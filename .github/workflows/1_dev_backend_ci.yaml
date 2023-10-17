@@ -65,7 +65,7 @@ jobs:
     - name: Update Kubernetes deployment
       run: |
          git pull
-         sed -i 's@image: .*@image: '"${{ env.IMAGE_NAME }}:0.1.0"'@' ./deploy/dev/api-deployment.yaml
+         sed -i 's@image: .*@image: '"${{ env.IMAGE_NAME }}:${{ steps.extract_version.outputs.VERSION }}"'@'  ./deploy/dev/api-deployment.yaml
 
 
     - name: Commit changes
