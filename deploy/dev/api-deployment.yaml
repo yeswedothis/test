@@ -15,7 +15,7 @@ spec:
       labels:
         app: vote-api-dev
       annotations:
-        vote-config-version: "fcc9f8"
+        vote-config-version: "5d4d42"
     spec:
       containers:
       - image: yjring/vote-api:0.1.0
