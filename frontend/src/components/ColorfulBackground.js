@@ -6,7 +6,7 @@ const containerStyle = {
     width: '100%', 
     height: '50vh' 
 };
-
+ 
 const labelStyle = { 
     backgroundColor: 'white', 
     textAlign: 'center'
