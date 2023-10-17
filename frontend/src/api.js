@@ -130,7 +130,7 @@ export async function resultApi() {
             return arr;
             }, [])
         // [
-        //     { 
+        //     {  
         //         "optionId": "01",
         //         "count": 3
         //     },
