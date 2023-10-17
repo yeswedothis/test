@@ -17,20 +17,32 @@ env:
   ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
-  dev-backend-build-and-push:
+  extract-version:
     runs-on: ubuntu-latest
-
+    outputs:
+      version: ${{ steps.extract_version.outputs.VERSION }}
+    
     steps:
     - name: Extract version
       id: extract_version
       run: echo "::set-output name=VERSION::dev-$(echo ${GITHUB_SHA::6})"
+  
+  checkout-code:
+    needs: extract-version
+    runs-on: ubuntu-latest
     
+    steps:
     - name: Checkout code
       uses: actions/checkout@v2
       with: 
         ref: main
         token: ${{ env.ACCESS_TOKEN }}
-      
+
+  setup-build-test:
+    needs: checkout-code
+    runs-on: ubuntu-latest
+    
+    steps:
     - name: Set up JDK 1.11
       uses: actions/setup-java@v2
       with:
@@ -42,7 +54,12 @@ jobs:
 
     - name: Test with Maven
       run: mvn test --file backend/pom.xml
-      
+  
+  build-and-push-images:
+    needs: setup-build-test
+    runs-on: ubuntu-latest
+    
+    steps:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
 
@@ -60,18 +77,28 @@ jobs:
         dockerfile: Dockerfile
         push: true
         platforms: linux/amd64,linux/arm64
-        tags: ${{ env.IMAGE_NAME }}:0.1.0
+        tags: ${{ env.IMAGE_NAME }}:${{ steps.extract_version.outputs.VERSION }}
 
+  update-deployment:
+    needs: docker-job
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with: 
+        ref: main
+        token: ${{ env.ACCESS_TOKEN }}
+  
     - name: Update Kubernetes deployment
       run: |
          git pull
-         sed -i 's@image: .*@image: '"${{ env.IMAGE_NAME }}:0.1.0"'@' ./deploy/dev/api-deployment.yaml
-
-
+         sed -i 's@image: .*@image: '"${{ env.IMAGE_NAME }}:${{ steps.extract_version.outputs.VERSION }}"'@' ./deploy/dev/api-deployment.yaml
+  
     - name: Commit changes
       run: |
         git config --local user.email "PipelineBot"
         git config --local user.name "PipelineBot"
         git add ./deploy/dev/api-deployment.yaml
-        git commit -m "Update backend image version to 0.1.0" -a
+        git commit -m "Update backend image version to ${{ steps.extract_version.outputs.VERSION }}" -a
         git push
