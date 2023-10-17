@@ -80,7 +80,7 @@ jobs:
         tags: ${{ env.IMAGE_NAME }}:${{ steps.extract_version.outputs.VERSION }}
 
   update-deployment:
-    needs: docker-job
+    needs: build-and-push-images
     runs-on: ubuntu-latest
     
     steps:
