@@ -15,10 +15,10 @@ spec:
       labels:
         app: vote-api-dev
       annotations:
-        vote-config-version: "8a54e8"
+        vote-config-version: v1
     spec:
       containers:
-      - image: yjring/vote-api:dev-24da33
+      - image: yjring/vote-api:0.1.0
         name: vote-api
         imagePullPolicy: Always
         resources:
